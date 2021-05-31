@@ -1,6 +1,6 @@
 # About Myself
 
-My name is **Siarhei**. I'm a doctor by education, but since 2000 I’ve been interested in IT technologies. I was a founder of a local area network in one of microdistrict in my native town. I have experience in development and deployment internet sites, VPS administration. I have basic knowledge on html, javascript, css, php, mysql, network architecture, linux administration. From 2014 to the present I have been developing and maintaining a specialized (CRM-like) accounting system for medicine data.
+My name is **Siarhei**. I'm a doctor by education, but since 2000 I’ve been interested in IT technologies. I was a founder of a local area network in one of microdistrict in my native town. I have experience in development and deployment internet sites, VPS administration. I have basic knowledge on html, javascript, css, php, mysql, network architecture, linux administration.
 
 Outside of work, I like to play table tennis and travel with my family.
 
