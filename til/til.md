@@ -15,3 +15,11 @@ Learned about DevOps' role as a team member, tools for CI/CD, role of a good qua
 ### 2021-06-03
 
 Learned nothing. Working hard to prepare monthly reports.
+
+### 2021-06-04
+
+Learned nothing. Working hard to prepare monthly reports.
+
+### 2021-06-05
+
+Learned how to install python with flask, write simple ("hello world") http post-listener application.
