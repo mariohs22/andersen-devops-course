@@ -35,3 +35,7 @@ Learned about diffenent shell types, shell history. Learned about software confi
 ### 2021-06-08
 
 Learned about bash scripting best practices.
+
+### 2021-06-09
+
+Learned about dev tools (IDE, programming languages, packet managers etc), managing github projects kanban.
