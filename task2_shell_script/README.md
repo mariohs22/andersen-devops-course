@@ -1,10 +1,14 @@
 # Shell script
 
+**Current status: in progress...**
+
 ## Task description
 
 Write shell script that doing this one-line command:
 
-`sudo netstat -tunapl | awk '/firefox/ {print $5}' | cut -d: -f1 | sort | uniq -c | sort | tail -n5 | grep -oP '(\d+\.){3}\d+' | while read IP ; do whois $IP | awk -F':' '/^Organization/ {print $2}' ; done`
+```
+sudo netstat -tunapl | awk '/firefox/ {print $5}' | cut -d: -f1 | sort | uniq -c | sort | tail -n5 | grep -oP '(\d+\.){3}\d+' | while read IP ; do whois $IP | awk -F':' '/^Organization/ {print $2}' ; done
+```
 
 **Mandatory requirements:**
 
@@ -93,5 +97,7 @@ Operand `IP` used to specify the name of a shell variable (used later in while l
 Operand `$IP` means WHOIS query to IP address specified in while loop.
 
 1.13. Awk with options `-F':' '/^Organization/ {print $2}'` means get column #2 (Foreign Address) of a previous whois output for `Organization` name, using `:` as input field separator.
+
+**Summary** This one-line command displays WHOIS `Organization` field of last 5 firefox connections.
 
 2. Write shell script. Use [Minimal safe Bash script template](https://betterdev.blog/minimal-safe-bash-script-template/).
