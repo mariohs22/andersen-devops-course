@@ -27,3 +27,11 @@ Learned how to install python with flask, write simple ("hello world") http post
 ### 2021-06-06
 
 Learned nothing. Spent weekend with my family.
+
+### 2021-06-07
+
+Learned about diffenent shell types, shell history. Learned about software configuration management systems (Ansible, Chef, Puppet, SaltStack).
+
+### 2021-06-08
+
+Learned about bash scripting best practices.
