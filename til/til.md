@@ -23,3 +23,7 @@ Learned nothing. Working hard to prepare monthly reports.
 ### 2021-06-05
 
 Learned how to install python with flask, write simple ("hello world") http post-listener application.
+
+### 2021-06-06
+
+Learned nothing. Spent weekend with my family.
