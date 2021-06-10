@@ -1,6 +1,6 @@
 # Shell script
 
-**Current status: in progress...**
+**Current status: done**
 
 ## Task description
 
@@ -84,7 +84,7 @@ Option `-n5` used to display last 5 lines.
 
 Option `-oP '(\d+\.){3}\d+'` means print only the matched (non-empty) parts of matching lines, with each such part on a separate output line, use Perl-compatible regular expression `(\d+\.){3}\d+`.
 
-Regular expression `(\d+\.){3}\d+` used to match IP-address: 3 substrings of '_1 or nore digits with `.` on its end_' and 1 or more digit alter last substring.
+Regular expression `(\d+\.){3}\d+` used to match IP-address: 3 substrings of '_1 or nore digits with `.` on its end_' and 1 or more digit after last substring.
 
 1.10. [While ... done](https://www.shellscript.sh/loops.html) means while loop in unix shell.
 
@@ -101,3 +101,30 @@ Operand `$IP` means WHOIS query to IP address specified in while loop.
 **Summary** This one-line command displays WHOIS `Organization` field of last 5 firefox connections.
 
 2. Write shell script. Use [Minimal safe Bash script template](https://betterdev.blog/minimal-safe-bash-script-template/).
+
+## Manual
+
+Simple download connections.sh script and run. You must specify process name or PID as the script argument. Run this script as root to see more details.
+
+```
+Usage: connections.sh [-h] [-v] [-n 5] [-s] [-f organization] process
+
+This script shows WHOIS information of a specified program (process or PID) current connections.
+
+Required argument:
+
+process         Specify process name or PID
+
+Available options:
+
+-h, --help      Print this help and exit
+-v, --verbose   Print script debug info
+-n, --num_lines Set number of output lines, 5 by default
+-s, --state     Choose connection state, all by default. Possible values: listen, established, time_wait, close_wait
+-f, --field     WHOIS field to fetch, organization by default. Possible values: organization, domain, status
+
+Usage example:
+
+connections.sh firefox
+connections.sh -n 10 -s established -f organization firefox
+```
