@@ -39,3 +39,7 @@ Learned about bash scripting best practices.
 ### 2021-06-09
 
 Learned about dev tools (IDE, programming languages, packet managers etc), managing github projects kanban.
+
+### 2021-06-10
+
+Learned basic rules and syntax writing bash scripts (variables, loops, command-line params and arguments, etc.).
