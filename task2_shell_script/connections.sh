@@ -7,7 +7,7 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [-n 5] [-s LISTEN] [-f organization] process
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [-n 5] [-s] [-f organization] process
 
 This script shows WHOIS information of a specified program (process or PID) current connections.
 
@@ -19,10 +19,9 @@ Available options:
 
 -h, --help      Print this help and exit
 -v, --verbose   Print script debug info
--p, --process   Set the process name or PID
 -n, --num_lines Set number of output lines, 5 by default
--s, --state     Choose connection state, ALL by default. Possible values: established, syn-sent, syn-recv, fin-wait-1, fin-wait-2, time-wait, closed, close-wait, last-ack, listen, closing, all, connected, synchronized, bucket, big
--f, --field     WHOIS field to fetch, organization by default
+-s, --state     Choose connection state, all by default. Possible values: listen, established, time_wait, close_wait
+-f, --field     WHOIS field to fetch, organization by default. Possible values: organization, domain, status
 
 Usage example:
 
@@ -56,15 +55,15 @@ die() {
 }
 
 check_environment() {
-  if [ -z "$(which netstat)" ]; then
+  if [[ -z "$(which netstat)" ]]; then
     die "${RED}Please install net-tools package${NOFORMAT}"
   fi
 
-  if [ -z "$(which whois)" ]; then
+  if [[ -z "$(which whois)" ]]; then
     die "${RED}Please install whois package${NOFORMAT}"
   fi
 
-  if [ "$EUID" -ne 0 ]; then
+  if [[ "$EUID" -ne 0 ]]; then
     msg "${ORANGE}Run as root to see more details${NOFORMAT}"
   fi
 }
@@ -73,7 +72,7 @@ parse_params() {
   # default values of variables set
   process=''
   num_lines=5
-  state='ALL'
+  state=''
   field='organization'
 
   while :; do
@@ -90,7 +89,7 @@ parse_params() {
       shift
       ;;
     -f | --field)
-      field="${2-}"
+      field=$(echo ${2-} | tr [[:upper:]] [[:lower:]])
       shift
       ;;
     -?*) die "${RED}Unknown option: $1 ${NOFORMAT}" ;;
@@ -113,15 +112,64 @@ parse_params() {
   return 0
 }
 
+get_ip_addresses() {
+  ip_addresses="$(netstat -tunapl)"
+  if [[ $ip_addresses =~ $state ]]; then
+    ip_addresses=$(echo "$ip_addresses" | grep "$state" | awk '/'"$process"/' {print $5}')
+    if [[ ! -z "$ip_addresses" ]]; then
+      ip_addresses=$(echo "$ip_addresses" | cut -d: -f1 | sort | uniq -c | sort | tail -n"$num_lines" | grep -oP '(\d+\.){3}\d+')
+      if [[ -z "$ip_addresses" ]]; then
+        die "${RED}Could not parse any IP addresses${NOFORMAT}" 3
+      fi
+    else
+      die "${RED}Connections with process ${PURPLE}${process}${NOFORMAT} not found${NOFORMAT}" 3
+    fi
+  else
+    die "${RED}Connections with state ${PURPLE}${state}${NOFORMAT} not found${NOFORMAT}" 3
+  fi
+  return 0
+}
+
+whois_query() {
+  if [[ -n "$field" ]]; then
+    msg "${GREEN}Whois queries for field ${PURPLE}${field}:${NOFORMAT}"
+  fi
+  for i in $ip_addresses
+  do
+    whois_result="$(whois "$(echo $i)")"
+    if [[ "$field" = "organization" ]]; then
+      result="$(echo "$whois_result" | awk -F':' '/^Organization:|^org:|^Org:/ {print $2}' | tr -s ' ' | uniq)"
+      if [[ -z "$result" ]]; then
+        echo "$i - Organization not found"
+      else
+        echo "$i - $result"
+      fi
+    fi
+
+    if [[ "$field" = "domain" ]]; then
+      result="$(echo "$whois_result" | awk -F':' '/^Domain name:|^Domain Name:|^domain:/ {print $2}' | tr -s ' ' | uniq)"
+      if [[ -z "$result" ]]; then
+        echo "$i - Domain not found"
+      else
+        echo "$i - $result"
+      fi
+    fi
+
+    if [[ "$field" = "status" ]]; then
+      result="$(echo "$whois_result" | awk -F':' '/^state:/ {print $2}' | tr -s ' ' | uniq)"
+      if [[ -z "$result" ]]; then
+        echo "$i - Domain status not found"
+      else
+        echo "$i - $result"
+      fi
+    fi
+
+  done
+  return 0
+}
+
 setup_colors
 check_environment
 parse_params "$@"
-
-
-# script logic here
-
-msg "${RED}Read parameters:${NOFORMAT}"
-msg "- process: ${process}"
-msg "- num_lines: ${num_lines}"
-msg "- state: ${state}"
-msg "- field: ${field}"
+get_ip_addresses
+whois_query
