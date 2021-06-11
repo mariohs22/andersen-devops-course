@@ -46,4 +46,4 @@ Learned basic rules and syntax writing bash scripts (variables, loops, command-l
 
 ### 2021-06-11
 
-Learned Go basics, first expetience in AWS Lambda.
+Learned Go basics, first expetience in writing Telegram bot and deplying it to AWS Lambda.
