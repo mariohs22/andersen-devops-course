@@ -3,9 +3,6 @@ package main
 // Template package for debug:
 // Use: cd git
 //      go run .
-//
-// Deploy: env GOOS=linux go build -o bin/webhook main.go
-//         serverless deploy -v
 
 import (
 	"context"
