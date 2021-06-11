@@ -17,19 +17,19 @@ Connect to [@andersendevops2021bot](https://t.me/andersendevops2021bot)
 To communicate with bot use these commands:
 
 - `/help` - display help message
-- `/git` - show link to current (my course) repository
+- `/git` - show link this (my course) repository
 - `/tasks` - show list of completed tasks
 - `/task#` - show link to specifeed task, where # is a task number
 
 ## Bot description
 
-Bot is written in [Go](https://golang.org/) language and uses [Serverless](https://www.serverless.com/) framework to deploy this bot to [AWS Lambda](https://aws.amazon.com/lambda/).
+This bot is written in [Go](https://golang.org/) language and uses [Serverless](https://www.serverless.com/) framework to deploy to [AWS Lambda](https://aws.amazon.com/lambda/).
 
 ## Build requirements:
 
 - Clone this repository
 
-- You need to be registered AWS user, get security credentials in [AWS Console](https://console.aws.amazon.com/iam/home?#/security_credentials) and write it in `./aws/credentials` file in home root directory:
+- You need to be registered AWS user. Get security credentials in [AWS Console](https://console.aws.amazon.com/iam/home?#/security_credentials) and write it in `./aws/credentials` file in home root directory:
 
 ```
 [default]
@@ -70,7 +70,7 @@ env GOOS=linux go build -o bin/webhook main.go
 serverless deploy -v
 ```
 
-You need to copy endloint link from console.
+You need to copy endpoint link from console.
 
 - Integrate bot with Telegram:
 
