@@ -2,7 +2,7 @@
 
 This repository represents my stydying at [Andersen](https://www.andersenlab.com) DevOps Courses May-July 2021.
 
-**Current tasks progress**: ![50%](https://progress-bar.dev/50)
+**Current tasks progress**: ![75%](https://progress-bar.dev/75)
 
 Detailed information available in [Projects](https://github.com/mariohs22/andersen-devops-course/projects/2) section.
 
