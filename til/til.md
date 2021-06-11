@@ -43,3 +43,7 @@ Learned about dev tools (IDE, programming languages, packet managers etc), manag
 ### 2021-06-10
 
 Learned basic rules and syntax writing bash scripts (variables, loops, command-line params and arguments, etc.).
+
+### 2021-06-11
+
+Learned Go basics, first expetience in AWS Lambda.
