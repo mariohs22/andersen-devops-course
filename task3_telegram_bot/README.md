@@ -25,6 +25,15 @@ To communicate with bot use these commands:
 
 This bot is written in [Go](https://golang.org/) language and uses [Serverless](https://www.serverless.com/) framework to deploy to [AWS Lambda](https://aws.amazon.com/lambda/).
 
+The bot logic of getting tasks is based on retrieving the repository issues (filtered by issue status). The main rule is to create one issue according to one task:
+
+```
+Issue name:             Task 1: Task name
+Task directory name:    task1_task_name
+```
+
+When the task is done, you must close the issue, so the bot reads that task as completed.
+
 ## Build requirements:
 
 - Clone this repository
@@ -54,6 +63,8 @@ npm install -g serverless
 ```
 go get -u gopkg.in/tucnak/telebot.v2
 go get github.com/aws/aws-lambda-go
+go get github.com/google/go-github/v35
+go get
 ```
 
 May be you need to install other Go packages, depending on your local environment.
