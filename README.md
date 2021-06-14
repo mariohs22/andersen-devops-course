@@ -17,7 +17,7 @@ Detailed information available in [Projects](https://github.com/mariohs22/anders
 - **2021-06-02**: DevOps as a team member, tools for CI/CD. Homework: [📁 task1_ansible](./task1_ansible).
 - **2021-06-07**: Ops shell (bash, powershell). Software configuration management systems (Ansible, Chef, Puppet, SaltStack). Homeworks: [📁 task2_shell_script](./task2_shell_script), [📁 task2_chmod_subtask](./task2_chmod_subtask).
 - **2021-06-09**: Dev tools (IDE, programming languages, packet managers etc). Homework: [📁 task3_telegram_bot](./task3_telegram_bot).
-- **2021-06-14**: Git, git basics, git flow. Homework: [📁 task4_git](./task4_git).
+- **2021-06-14**: Git, git basics, git flow. Homework: [📁 task4_github](./task4_github).
 
 ## Repository structure
 
