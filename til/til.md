@@ -47,3 +47,11 @@ Learned basic rules and syntax writing bash scripts (variables, loops, command-l
 ### 2021-06-11
 
 Learned Go basics, first expetience in writing Telegram bot and deplying it to AWS Lambda.
+
+### 2021-06-12
+
+Learned about microservices software architecture.
+
+### 2021-06-13
+
+Learned about microwave owens troubleshooting. Restore electrical circuit in own microvawe owen by replacing broken fuse.
