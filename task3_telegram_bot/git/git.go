@@ -1,13 +1,13 @@
 package main
 
-// Template package for debug:
-// Use: cd git
-//      go run .
+// Template package for local debug:
+// Use: /go run .
 
 import (
 	"context"
 	"fmt"
 	"regexp"
+	"sort"
 	"strings"
 
 	"github.com/google/go-github/v35/github"
@@ -18,7 +18,7 @@ const GITHUB_REPOSITORY = "andersen-devops-course"
 const TASK_LABEL = "task"
 
 func main() {
-	req := "/task3"
+	req := "/task1"
 
 	gitTemplate := regexp.MustCompile(`(?i)^/git$`)
 	helpTemplate := regexp.MustCompile(`(?i)^/help$`)
@@ -34,33 +34,41 @@ func main() {
 		client := github.NewClient(nil)
 		ctx := context.Background()
 		opt := &github.IssueListByRepoOptions{State: "closed", Labels: []string{TASK_LABEL}}
-		listTasks, _, _ := client.Issues.ListByRepo(ctx, GITHUB_ACCOUNT, GITHUB_REPOSITORY, opt)
-		found := false
-		for i, task := range listTasks {
-			found = true
+		listIssues, _, _ := client.Issues.ListByRepo(ctx, GITHUB_ACCOUNT, GITHUB_REPOSITORY, opt)
+		sort.Slice(listIssues, func(i, j int) bool {
+			return github.Stringify(listIssues[i].Title) < github.Stringify(listIssues[j].Title)
+		})
+		listTasks := []string{}
+		for i, task := range listIssues {
 			message := fmt.Sprintf("%v. %v\n", i+1, github.Stringify(task.Title))
-			fmt.Println(message)
+			listTasks = append(listTasks, message)
 		}
-		if !found {
+		if len(listTasks) > 0 {
+			fmt.Println("List of completed tasks:\n" + fmt.Sprint(strings.Trim(fmt.Sprint(listTasks), "[]")))
+		} else {
 			fmt.Println("Done tasks not found")
 		}
 
 	} else if taskNTemplate.MatchString(req) {
-		taskNumber := taskNTemplate.FindStringSubmatch(req)[1]
 		client := github.NewClient(nil)
 		ctx := context.Background()
+		taskNumber := taskNTemplate.FindStringSubmatch(req)[1]
 		opt := &github.IssueListByRepoOptions{State: "all", Labels: []string{TASK_LABEL}}
 		listTasks, _, _ := client.Issues.ListByRepo(ctx, GITHUB_ACCOUNT, GITHUB_REPOSITORY, opt)
 		captionTemplate := regexp.MustCompile(`"Task (\d?): (.*?)"`)
 		found := false
-		for i, task := range listTasks {
+		for _, task := range listTasks {
 			title := github.Stringify(task.Title)
 			titleParsed := captionTemplate.FindStringSubmatch(title)
 			if titleParsed[1] == taskNumber {
 				found = true
-				caption := strings.ToLower(strings.Replace(titleParsed[2], " ", "_", -1))
-				url := fmt.Sprintf("https://github.com/%v/%v/tree/main/task%v_%v", GITHUB_ACCOUNT, GITHUB_REPOSITORY, titleParsed[1], caption)
-				fmt.Printf("%v. %v %v\n", i+1, title, url)
+				if github.Stringify(task.State) == `"closed"` {
+					caption := strings.ToLower(strings.Replace(titleParsed[2], " ", "_", -1))
+					url := fmt.Sprintf("https://github.com/%v/%v/tree/main/task%v_%v", GITHUB_ACCOUNT, GITHUB_REPOSITORY, titleParsed[1], caption)
+					fmt.Printf("%v %v\n", title, url)
+				} else {
+					fmt.Printf("Task #%v is not completed at the moment, you may use /link%v command to display url of this task", taskNumber, taskNumber)
+				}
 			}
 		}
 		if !found {

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"regexp"
+	"sort"
 	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -33,6 +34,7 @@ func main() {
 		helpTemplate := regexp.MustCompile(`(?i)^/help$`)
 		tasksTemplate := regexp.MustCompile(`(?i)^/tasks$`)
 		taskNTemplate := regexp.MustCompile(`(?i)^/task(\d+)$`)
+		linkNTemplate := regexp.MustCompile(`(?i)^/link(\d+)$`)
 
 		client := github.NewClient(nil)
 		ctx := context.Background()
@@ -45,23 +47,27 @@ func main() {
 /help  - display this message
 /git   - show link to my course repository
 /tasks - show list of completed tasks
-/task# - show link to specifeed task, where # is a task number`)
+/task# - show link to specified completed task, where # is a task number
+/link# - show link to specified task, where # is a task number`)
 
 		} else if gitTemplate.MatchString(m.Text) {
 			url := fmt.Sprintf("https://github.com/%v/%v", GITHUB_ACCOUNT, GITHUB_REPOSITORY)
 			b.Send(m.Chat, url)
 
 		} else if tasksTemplate.MatchString(m.Text) {
-			b.Send(m.Chat, "The list of completed tasks:")
 			opt := &github.IssueListByRepoOptions{State: "closed", Labels: []string{TASK_LABEL}}
-			listTasks, _, _ := client.Issues.ListByRepo(ctx, GITHUB_ACCOUNT, GITHUB_REPOSITORY, opt)
-			found := false
-			for i, task := range listTasks {
-				found = true
+			listIssues, _, _ := client.Issues.ListByRepo(ctx, GITHUB_ACCOUNT, GITHUB_REPOSITORY, opt)
+			sort.Slice(listIssues, func(i, j int) bool {
+				return github.Stringify(listIssues[i].Title) < github.Stringify(listIssues[j].Title)
+			})
+			listTasks := []string{}
+			for i, task := range listIssues {
 				message := fmt.Sprintf("%v. %v\n", i+1, github.Stringify(task.Title))
-				b.Send(m.Chat, message)
+				listTasks = append(listTasks, message)
 			}
-			if !found {
+			if len(listTasks) > 0 {
+				b.Send(m.Chat, "List of completed tasks:\n"+fmt.Sprint(strings.Trim(fmt.Sprint(listTasks), "[]")))
+			} else {
 				b.Send(m.Chat, "Unfortunately, completed tasks is not found")
 			}
 
@@ -76,17 +82,37 @@ func main() {
 				titleParsed := captionTemplate.FindStringSubmatch(title)
 				if titleParsed[1] == taskNumber {
 					found = true
-					status := "NOT COMPLETED"
 					if github.Stringify(task.State) == `"closed"` {
-						status = "COMPLETED"
+						caption := strings.ToLower(strings.Replace(titleParsed[2], " ", "_", -1))
+						url := fmt.Sprintf("https://github.com/%v/%v/tree/main/task%v_%v", GITHUB_ACCOUNT, GITHUB_REPOSITORY, titleParsed[1], caption)
+						b.Send(m.Chat, fmt.Sprintf("%v %v\n", title, url))
+					} else {
+						b.Send(m.Chat, fmt.Sprintf("Task #%v is not completed at the moment, you may use /link%v command to display url of this task", taskNumber, taskNumber))
 					}
-					caption := strings.ToLower(strings.Replace(titleParsed[2], " ", "_", -1))
-					url := fmt.Sprintf("https://github.com/%v/%v/tree/main/task%v_%v", GITHUB_ACCOUNT, GITHUB_REPOSITORY, titleParsed[1], caption)
-					b.Send(m.Chat, fmt.Sprintf("%v [%v] %v\n", title, status, url))
 				}
 			}
 			if !found {
-				b.Send(m.Chat, "Task #%v is not found", taskNumber)
+				b.Send(m.Chat, fmt.Sprintf("Task #%v is not found", taskNumber))
+			}
+
+		} else if linkNTemplate.MatchString(m.Text) {
+			taskNumber := linkNTemplate.FindStringSubmatch(m.Text)[1]
+			opt := &github.IssueListByRepoOptions{State: "all", Labels: []string{TASK_LABEL}}
+			listTasks, _, _ := client.Issues.ListByRepo(ctx, GITHUB_ACCOUNT, GITHUB_REPOSITORY, opt)
+			captionTemplate := regexp.MustCompile(`"Task (\d?): (.*?)"`)
+			found := false
+			for _, task := range listTasks {
+				title := github.Stringify(task.Title)
+				titleParsed := captionTemplate.FindStringSubmatch(title)
+				if titleParsed[1] == taskNumber {
+					found = true
+					caption := strings.ToLower(strings.Replace(titleParsed[2], " ", "_", -1))
+					url := fmt.Sprintf("https://github.com/%v/%v/tree/main/task%v_%v", GITHUB_ACCOUNT, GITHUB_REPOSITORY, titleParsed[1], caption)
+					b.Send(m.Chat, fmt.Sprintf("%v %v\n", title, url))
+				}
+			}
+			if !found {
+				b.Send(m.Chat, fmt.Sprintf("Task #%v is not found", taskNumber))
 			}
 
 		} else {
