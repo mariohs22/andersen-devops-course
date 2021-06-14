@@ -55,3 +55,7 @@ Learned about microservices software architecture.
 ### 2021-06-13
 
 Learned about microwave owens troubleshooting. Restore electrical circuit in own microvawe owen by replacing broken fuse.
+
+### 2021-06-14
+
+Improved my Git experience: new commands use cases, writing good commits, multiline commits, etc.
