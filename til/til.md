@@ -59,3 +59,7 @@ Learned about microwave owens troubleshooting. Restore electrical circuit in own
 ### 2021-06-14
 
 Improved my Git experience: new commands use cases, writing good commits, multiline commits, etc.
+
+### 2021-06-15
+
+Learned installing VirtualBox VM (Debian netinstall), installing Ansible on Windows.
