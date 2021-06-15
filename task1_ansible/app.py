@@ -1,8 +1,5 @@
-from flask import Flask, json, request, jsonify
+from flask import Flask, json, request
 app = Flask(__name__)
-
-# Install flask: https://flask.palletsprojects.com/en/2.0.x/installation/
-# POST: {"animal":"cow", "sound":"moooo", "count": 3}
 
 animals = {
     'Monkey':   '🐒',  # U+1F412
@@ -88,7 +85,7 @@ def get_animal_emoji(animal):
     try:
         return animals[animal.title()]
     except:
-        return animal
+        return animal.title()
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -103,7 +100,7 @@ def get_query():
             raise ValueError('"count" parameter must be 1 or greater')
 
     except:
-        return "Bad query or some parameter(s) missing. Please, use GET or POST JSON query like {\"animal\":\"cow\", \"sound\":\"moooo\", \"count\": 3}"
+        return "Bad query or some parameter(s) missing.\nPlease, use GET or POST JSON query like {\"animal\":\"cow\", \"sound\":\"moooo\", \"count\": 3}"
 
     result = ""
     for _ in range(r_count):
