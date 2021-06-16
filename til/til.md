@@ -63,3 +63,7 @@ Improved my Git experience: new commands use cases, writing good commits, multil
 ### 2021-06-15
 
 Learned installing VirtualBox VM (Debian netinstall), installing Ansible on Windows.
+
+### 2021-06-16
+
+First experience in Ansible configuration, using ansible-vault, ansible-playbook creating and troubleshooting. Also learned about linux namespaces and containers (Docker).
