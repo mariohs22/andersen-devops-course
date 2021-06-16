@@ -1,7 +1,12 @@
 ---
 - hosts: debianserver
-  gather_facts: false
   become: yes
+  become_method: su
+  become_flags: "-"
+  become_user: root
+  module_defaults:
+    apt:
+      force_apt_get: yes
   tasks:
     - name: Disable ssh password auth
       lineinfile:
@@ -17,23 +22,19 @@
         line: "PermitRootLogin no"
       notify: reload sshd
 
-    # PYTHON
-    - name: Install pip3
+    - name: Install needed packages (python3-pip, ufw, nginx)
       apt:
-        name: python3-pip
+        pkg:
+          - python3-pip
+          - ufw
+          - nginx
         state: present
-        update_cache: no
+        update_cache: true
 
     - name: Install flask
       pip:
         name: flask
         executable: pip3
-
-    # UFW
-    - name: Install a latest UFW
-      apt:
-        name: ufw
-        state: latest
 
     - name: UFW block incoming
       ufw:
@@ -45,38 +46,31 @@
         default: allow
         direction: outgoing
 
-    - name: Allow ssh, http, https with UFW
+    - name: UFW allow ssh, http, https
       ufw:
         rule: allow
         port: 22,80,443
         proto: tcp
 
     # Error enabling ufw: https://github.com/ansible-collections/community.general/issues/411
-    - name: enable UFW
+    - name: UFW enable
       ufw:
         state: enabled
 
-    # NGINX
-    - name: Install "nginx" package
-      apt:
-        name: nginx
-        state: present
+    - name: Copy source app
+      copy:
+        src: "{{ playbook_dir }}/source/"
+        dest: /var/www/site/
 
     - name: Remove default sites from "sites-enabled" directory
       file:
         path: /etc/nginx/sites-enabled/default
         state: absent
 
-    - name: Copy source
-      copy:
-        src: "{{ playbook_dir }}/source/"
-        dest: /var/www/site/
-
-    - name: Copy nginx config template
+    - name: Copy nginx site config template
       template:
-        src: "{{ playbook_dir }}/nginx.conf"
+        src: "{{ playbook_dir }}/nginx-site.conf"
         dest: /etc/nginx/sites-available/flaskapp
-      notify: restart nginx
 
     - name: Create link "flaskapp" config to sites-enabled
       file:
@@ -84,22 +78,26 @@
         dest: /etc/nginx/sites-enabled/flaskapp
         state: link
 
-    - name: Start Nginx
-      service:
-        name: nginx
-        state: started
-        enabled: yes
+    - name: Add self-signed sertificates for https connections
+      include_role:
+        name: ome.ssl_certificate
 
-    - name: Create service
+    - name: Create flaskapp service
       template:
         src: "{{ playbook_dir }}/flaskapp.service"
         dest: /lib/systemd/system/flaskapp.service
       notify:
         - reload systemctl
 
-    - name: start flaskapp.service
+    - name: Start flaskapp service
       service:
         name: flaskapp.service
+        state: started
+        enabled: yes
+
+    - name: Start nginx
+      service:
+        name: nginx
         state: started
         enabled: yes
 
@@ -112,15 +110,6 @@
         name: sshd
         state: reloaded
 
-    - name: restart nginx
-      service:
-        name: nginx
-        state: restarted
-
-- hosts: all
-  roles:
-    - role: ome.ssl_certificate
-  handlers:
     - name: restart nginx
       listen: ssl certificate changed
       service:
