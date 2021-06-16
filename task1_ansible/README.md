@@ -1,6 +1,6 @@
 # Ansible assignment
 
-**Current status: in progress...**
+**Current status: done**
 
 ## Create and deploy your own service
 
@@ -12,19 +12,11 @@ For the true enterprise grade system we will need Python3, Flask and emoji suppo
 - the service accepts GET and POST methods
 - the service should receive `JSON` object and return strings in the following manner:
 
-```sh
+```
 curl -XPOST -d'{"animal":"cow", "sound":"moooo", "count": 3}' http://myvm.localhost/
 cow says moooo
 cow says moooo
 cow says moooo
-Made with ❤️ by %your_name
-
-curl -XPOST -d'{"animal":"elephant", "sound":"whoooaaa", "count": 5}' http://myvm.localhost/
-elephant says whoooaaa
-elephant says whoooaaa
-elephant says whoooaaa
-elephant says whoooaaa
-elephant says whoooaaa
 Made with ❤️ by %your_name
 ```
 
@@ -43,14 +35,74 @@ Made with ❤️ by %your_name
 
 ### The operating stage:
 
-- create an ansible playbook that deploys the service to the VM
-- make sure all the components you need are installed and all the directories for the app are present
-- configure systemd so that the application starts after reboot
-- secure the VM so that our product is not stolen: allow connections only to the ports 22,80,443. Disable root login. Disable all authentication methods except 'public keys'.
-- bonus points for SSL/HTTPS support with self-signed certificates
-- bonus points for using ansible vault
+- [x] create an ansible playbook that deploys the service to the VM
+- [x] make sure all the components you need are installed and all the directories for the app are present
+- [x] configure systemd so that the application starts after reboot
+- [x] secure the VM so that our product is not stolen: allow connections only to the ports 22,80,443. Disable root login. Disable all authentication methods except 'public keys'.
+- [x] bonus points for SSL/HTTPS support with self-signed certificates
+- [x] bonus points for using ansible vault
 
-### Requirements
+## Task explanation and execution order
 
-- Debian 10
-- VirtualBox VM
+1. Install VirtualBox VM, create VM (node host) with latest [Debian netinstall image](https://www.debian.org/CD/netinst/).
+2. Setup network (add bridge interface, ensure VM is getting ip address, if no - check `/etc/network/interfaces` configuration).
+3. Install Ansible on master host (use [Cygwin](https://geekflare.com/ansible-installation-windows/) if host on Windows).
+4. On master host (terminal, cygwin):
+
+Clone this repository
+
+```
+git clone https://github.com/mariohs22/andersen-devops-course.git
+cd andersen-devops-course/task1_ansible
+```
+
+Run these commands to install ssl_certificate Ansible role, generate new ssh authentication key and transfer it to node host:
+
+```
+ansible-galaxy install ome.ssl_certificate
+ssh-keygen -f ~/.ssh/id_rsa -q -N ""
+ssh-copy-id <user-of-node-host>@<ip-address-of-node-host>
+```
+
+Add these lines in `/etc/ansible/hosts' file:
+
+```
+[debianserver]
+<ip-address-of-node-host>
+
+[debianserver:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user='{{ node_user }}'
+ansible_become_pass='{{ node_root_password }}'
+```
+
+5. Set up Ansible vault (on master host) to store passwords:
+
+Create `vault.yml` file with this contents:
+
+```
+node_user: <user-of-node-host>
+node_root_password: <root-password-of-node-host>
+```
+
+Encrypt file:
+
+```
+ansible-vault encrypt vault.yml
+```
+
+6. Run Ansible playbook (on master host):
+
+```
+ansible-playbook --ask-vault-pass --extra-vars '@vault.yml' deploy.yml
+```
+
+7. Test application:
+
+```
+curl -XPOST -d'{"animal":"elephant", "sound":"whoooaaa", "count": 4}'    http://<ip-address-of-node-host>
+curl -XPOST -d'{"animal":"elephant", "sound":"whoooaaa", "count": 4}' -k https://<ip-address-of-node-host>
+curl -XGET  -d'{"animal":"elephant", "sound":"whoooaaa", "count": 4}'    http://<ip-address-of-node-host>
+curl -XGET  -d'{"animal":"elephant", "sound":"whoooaaa", "count": 4}' -k https://<ip-address-of-node-host>
+
+```

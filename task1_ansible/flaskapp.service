@@ -1,0 +1,14 @@
+[Unit]
+Description=Flask App
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+WorkingDirectory=/var/www/site/
+ExecStart=/usr/bin/python3 /var/www/site/app.py
+
+[Install]
+WantedBy=multi-user.target
