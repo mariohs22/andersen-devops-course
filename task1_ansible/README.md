@@ -1,6 +1,6 @@
 # Ansible assignment
 
-**Current status: in progress...**
+**Current status: done**
 
 ## Create and deploy your own service
 
