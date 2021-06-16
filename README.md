@@ -2,7 +2,7 @@
 
 This repository represents my stydying at [Andersen](https://www.andersenlab.com) DevOps Courses May-July 2021.
 
-**Current tasks progress**: ![50%](https://progress-bar.dev/50)
+**Current tasks progress**: ![67%](https://progress-bar.dev/67)
 
 Detailed information available in [Projects](https://github.com/mariohs22/andersen-devops-course/projects/2) section.
 
@@ -18,6 +18,7 @@ Detailed information available in [Projects](https://github.com/mariohs22/anders
 - **2021-06-07**: Ops shell (bash, powershell). Software configuration management systems (Ansible, Chef, Puppet, SaltStack). Homeworks: [📁 task2_shell_script](./task2_shell_script), [📁 task2_chmod_subtask](./task2_chmod_subtask).
 - **2021-06-09**: Dev tools (IDE, programming languages, packet managers etc). Homework: [📁 task3_telegram_bot](./task3_telegram_bot).
 - **2021-06-14**: Git, git basics, git flow. Homework: [📁 task4_github](./task4_github).
+- **2021-06-16**: Linux namespaces. Containers, hypervizors. Docker. Homework: [📁 task5_docker](./task5_docker).
 
 ## Repository structure
 
