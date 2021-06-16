@@ -54,3 +54,69 @@ Made with ❤️ by %your_name
 
 - Debian 10
 - VirtualBox VM
+
+## TEST TEST TEST (unfinished)
+
+1. Install VirtualBox VM, create VM (node host) with latest [Debian netinstall image](https://www.debian.org/CD/netinst/).
+2. Setup network (add bridge interface, ensure VM is getting ip address, if no - change `/etc/network/interfaces` configuration).
+3. Install Ansible on master host (use [Cygwin](https://geekflare.com/ansible-installation-windows/) if host on Windows).
+4. On master host (terminal, cygwin):
+   Clone this repository
+
+```
+git clone https://github.com/mariohs22/andersen-devops-course.git
+cd task1_ansible
+```
+
+Run these commands to install ssl_certificate Ansible component, create new ssh authentication key and transfer it to node host:
+
+```
+ansible-galaxy install ome.ssl_certificate
+ssh-keygen
+ssh-copy-id <user-of-node-host>@<ip-address-of-node-host>
+```
+
+?Add these lines in `/etc/ansible/hosts' file:
+
+```
+[debianserver]
+<ip-address-of-node-host>
+```
+
+?Ensure a connection has been established:
+
+```
+ansible debianserver -m ping
+```
+
+5. Set up Ansible playbook
+
+Create `vault.yml` file:
+
+```
+node_user: <user-of-node-host>
+node_root_user: root
+node_root_password: <root-password-of-node-host>
+```
+
+Encrypt file:
+
+```
+ansible-vault encrypt vault.yml
+```
+
+Run Ansible playbook:
+
+```
+ ansible-playbook --ask-vault-pass --extra-vars '@vault.yml' deploy.yml
+```
+
+6. Test application:
+
+```
+curl -XPOST -d'{"animal":"elephant", "sound":"whoooaaa", "count": 4}'    http://<ip-address-of-node-host>
+curl -XPOST -d'{"animal":"elephant", "sound":"whoooaaa", "count": 3}' -k https://<ip-address-of-node-host>
+curl -XGET  -d'{"animal":"elephant", "sound":"whoooaaa", "count": 2}'    http://<ip-address-of-node-host>
+curl -XGET  -d'{"animal":"elephant", "sound":"whoooaaa", "count": 1}' -k https://<ip-address-of-node-host>
+
+```

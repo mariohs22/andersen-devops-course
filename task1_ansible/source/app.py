@@ -105,7 +105,7 @@ def get_query():
     result = ""
     for _ in range(r_count):
         result += get_animal_emoji(r_animal) + " says " + r_sound + "\n"
-    result += "Made with ❤️ by Siarhei"
+    result += "Made with ❤️ by Siarhei\n"
 
     return result
 
