@@ -67,3 +67,7 @@ Learned installing VirtualBox VM (Debian netinstall), installing Ansible on Wind
 ### 2021-06-16
 
 First experience in Ansible configuration, using ansible-vault, ansible-playbook creating and troubleshooting. Also learned about linux namespaces and containers (Docker).
+
+### 2021-06-17
+
+First experience in Docker (install, run, images, build).
