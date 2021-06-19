@@ -71,3 +71,7 @@ First experience in Ansible configuration, using ansible-vault, ansible-playbook
 ### 2021-06-17
 
 First experience in Docker (install, run, images, build).
+
+### 2021-06-18
+
+Docker, docker, docker... Learned of multi-stage builds technique, other techniques to reduce docker image size.
