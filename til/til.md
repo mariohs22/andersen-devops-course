@@ -75,3 +75,15 @@ First experience in Docker (install, run, images, build).
 ### 2021-06-18
 
 Docker, docker, docker... Learned of multi-stage builds technique, other techniques to reduce docker image size.
+
+### 2021-06-19
+
+Docker, docker, docker... Learned of multi-stage builds technique, other techniques to reduce docker image size.
+
+### 2021-06-20
+
+Learned nothing. Spend weekend with my family.
+
+### 2021-06-21
+
+BASH: Learned about using jq command, table printing the result of command execution (AWK begin loop).
