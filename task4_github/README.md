@@ -19,6 +19,20 @@
 Run `git_contrib.sh` script with github reposirory link as attribute:
 
 ```
+wget https://raw.githubusercontent.com/mariohs22/andersen-devops-course/main/task4_github/git_contrib.sh
+chmod +x ./git_contrib.sh
+./git_contrib.sh https://github.com/curl/curl
+```
+
+```
+./git_contrib.sh --help
+
+This script checks the open prs in the repository and returns the list of the most productive contributors.
+
+Usage: git_contrib.sh <repo_link>
+
+Usage example:
+
 git_contrib.sh https://github.com/curl/curl
 ```
 
