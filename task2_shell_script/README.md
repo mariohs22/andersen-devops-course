@@ -104,7 +104,7 @@ Operand `$IP` means WHOIS query to IP address specified in while loop.
 
 ## Manual
 
-Simple download connections.sh script and run. You must specify process name or PID as the script argument. Run this script as root to see more details.
+Simple download `connections.sh` script and run it. You must specify process name or PID as the script argument. Run this script as root to see more details.
 
 ```
 Usage: connections.sh [-h] [-v] [-n 5] [-s] [-f organization] process
