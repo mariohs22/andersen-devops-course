@@ -15,7 +15,7 @@
 
 ### Hints
 
-- [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html] (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html)
+- [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html)
 - [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
 - [https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)
 - [https://cloud.google.com/deployment-manager/docs](https://cloud.google.com/deployment-manager/docs)
