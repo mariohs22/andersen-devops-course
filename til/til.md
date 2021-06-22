@@ -87,3 +87,7 @@ Learned nothing. Spend weekend with my family.
 ### 2021-06-21
 
 BASH: Learned about using jq command, table printing the result of command execution (AWK begin loop).
+
+### 2021-06-22
+
+Learned IaC conception basics; Terraform, AWS CloudFormation applications.
