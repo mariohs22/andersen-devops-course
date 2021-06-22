@@ -2,7 +2,7 @@
 
 This repository represents my stydying at [Andersen](https://www.andersenlab.com) DevOps Courses May-July 2021.
 
-**Current tasks progress**: ![100%](https://progress-bar.dev/100)
+**Current tasks progress**: ![86%](https://progress-bar.dev/86)
 
 Detailed information available in [Projects](https://github.com/mariohs22/andersen-devops-course/projects/2) section.
 
@@ -19,6 +19,7 @@ Detailed information available in [Projects](https://github.com/mariohs22/anders
 - **2021-06-09**: Dev tools (IDE, programming languages, packet managers etc). Homework: [📁 task3_telegram_bot](./task3_telegram_bot).
 - **2021-06-14**: Git, git basics, git flow. Homework: [📁 task4_github](./task4_github).
 - **2021-06-16**: Linux namespaces. Containers, hypervizors. Docker. Homework: [📁 task5_docker](./task5_docker).
+- **2021-06-21**: IaC conception. Terraform, AWS CloudFormation, Azure resource manager, Google cloud deployment manager. Homework: [📁 task6_aws](./task6_aws).
 
 ## Repository structure
 
