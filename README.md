@@ -4,7 +4,7 @@
 ![Pending tasks](https://img.shields.io/github/issues/mariohs22/andersen-devops-course?label=Pending%20tasks)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mariohs22/andersen-devops-course)
 
-This repository represents my stydying at [Andersen](https://www.andersenlab.com) DevOps Courses May-July 2021.
+This repository represents my studies at [Andersen](https://www.andersenlab.com) DevOps Courses May-July 2021.
 
 Detailed information available in [Projects](https://github.com/mariohs22/andersen-devops-course/projects/2) section.
 
