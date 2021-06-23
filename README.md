@@ -1,8 +1,10 @@
 # Andersen DevOps Courses [May-July 2021]
 
-This repository represents my stydying at [Andersen](https://www.andersenlab.com) DevOps Courses May-July 2021.
+![Completed tasks](https://img.shields.io/github/issues-closed-raw/mariohs22/andersen-devops-course?color=success&label=Completed%20tasks)
+![Pending tasks](https://img.shields.io/github/issues/mariohs22/andersen-devops-course?label=Pending%20tasks)
+![GitHub last commit](https://img.shields.io/github/last-commit/mariohs22/andersen-devops-course)
 
-**Current tasks progress**: ![86%](https://progress-bar.dev/86)
+This repository represents my stydying at [Andersen](https://www.andersenlab.com) DevOps Courses May-July 2021.
 
 Detailed information available in [Projects](https://github.com/mariohs22/andersen-devops-course/projects/2) section.
 
