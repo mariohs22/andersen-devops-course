@@ -21,7 +21,7 @@ Clone this repositiry and change dir to _task5_docker_. Execute these commands t
 
 ```
 docker build -t mariohs22/task5 .
-docker run -p 8080:8080 mariohs22/task5
+docker run -it -p 8080:8080 mariohs22/task5
 ```
 
 After docker image is running, send appropriate JSON string to port 8080 on localhost. You may use [Postman](https://www.postman.com/) or execute command like this:
@@ -32,6 +32,30 @@ curl -d'{"animal":"elephant", "sound":"whoooaaa", "count": 4}' http://127.0.0.1:
 
 ## Task explanation
 
-The minimum docker image size is achieved by using two techniques: python compiler and docker multi-stage build. I used [Nuitka](https://nuitka.net/pages/overview.html) for compile python app to linux executable. The Docker [multi-stage build](https://docs.docker.com/develop/develop-images/multistage-build/) technique also used to down the image size. At first stage the application is compiled by Nuitka and removed all unnecessary files from app directory. The second stage is the build scratch docker image with copying app directory to it.
+The minimum docker image size is achieved by using two techniques: python compiler and docker multi-stage build. I used [Nuitka](https://nuitka.net/pages/overview.html) for compile python app to linux executable. The Docker [multi-stage build](https://docs.docker.com/develop/develop-images/multistage-build/) technique also used to down the image size:
 
-####Finally, the size of the resulting docker image is **32.98Mb**.
+- the first stage is the preparation of Ubuntu linux image with installed python, nuitka compiler and upx utility for compression;
+- the second stage is compiling python app and compress app executable file;
+- the third stage is creating docker image from scratch with copying to it app files from previous stage.
+
+#### Finally, the size of the resulting docker image is **20.4Mb**.
+
+**But we can reduce image size even more!** Let's use Docker Hub, which always compess image layers on pushing images:
+
+```
+docker login
+docker push mariohs22/tas5
+```
+
+Now the size of image is **12.21Mb**. You can check it on Docker Hub: [https://hub.docker.com/repository/docker/mariohs22/task5/tags?page=1&ordering=last_updated](https://hub.docker.com/repository/docker/mariohs22/task5/tags?page=1&ordering=last_updated) or use command `docker save <docker_image_id> | gzip | wc --bytes`:
+
+```
+$ docker save 2a043d67a16a | gzip | wc --bytes
+12591053
+```
+
+To retrieve compressed image from Docker Hub you can use command:
+
+```
+docker pull mariohs22/task5:latest
+```
