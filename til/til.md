@@ -91,3 +91,11 @@ BASH: Learned about using jq command, table printing the result of command execu
 ### 2021-06-22
 
 Learned IaC conception basics; Terraform, AWS CloudFormation applications.
+
+### 2021-06-23
+
+Learned Terraform basics.
+
+### 2021-06-24
+
+Docker: more deeper learning about multi-stage builds, reducing image size, using Docker Hub.
