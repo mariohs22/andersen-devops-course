@@ -44,7 +44,7 @@ The minimum docker image size is achieved by using two techniques: python compil
 
 ```
 docker login
-docker push mariohs22/tas5
+docker push mariohs22/task5
 ```
 
 Now the size of image is **12.21Mb**. You can check it on Docker Hub: [https://hub.docker.com/repository/docker/mariohs22/task5/tags?page=1&ordering=last_updated](https://hub.docker.com/repository/docker/mariohs22/task5/tags?page=1&ordering=last_updated) or use command `docker save <docker_image_id> | gzip | wc --bytes`:
