@@ -22,6 +22,7 @@ Detailed information available in [Projects](https://github.com/mariohs22/anders
 - **2021-06-14**: Git, git basics, git flow. Homework: [📁 task4_github](./task4_github).
 - **2021-06-16**: Linux namespaces. Containers, hypervizors. Docker. Homework: [📁 task5_docker](./task5_docker).
 - **2021-06-21**: IaC conception. Terraform, AWS CloudFormation, Azure resource manager, Google cloud deployment manager. Homework: [📁 task6_aws](./task6_aws).
+- **2021-06-23**: Terraform basics and Essentials.
 
 ## Repository structure
 
