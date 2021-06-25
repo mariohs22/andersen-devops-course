@@ -99,3 +99,7 @@ Learned Terraform basics.
 ### 2021-06-24
 
 Docker: more deeper learning about multi-stage builds, reducing image size, using Docker Hub.
+
+### 2021-06-25
+
+Terraform. Started learn at [https://www.terraform.io/intro/index.html](https://www.terraform.io/intro/index.html)
