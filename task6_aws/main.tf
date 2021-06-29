@@ -9,11 +9,6 @@ terraform {
   required_version = ">= 0.14.9"
 }
 
-# Specify the provider and access details
-provider "aws" {
-  profile = "default"
-  region  = var.AWS_region
-}
 
 # Create a VPC to launch our instances into
 resource "aws_vpc" "default" {
@@ -109,15 +104,41 @@ resource "aws_elb" "web" {
 }
 
 
-# data "template_file" "user_data" {
-#   template = file("add-ssh-web-app.yaml")
-# }
+
+
+
+
+data "aws_ami" "amazon_linux2" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "owner-alias"
+    values = ["amazon"]
+  }
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm*"]
+  }
+}
+
+
+
+
+
+
 
 
 
 resource "aws_instance" "EC2_instance_1" {
-  ami           = var.EC2_instances_ami
-  instance_type = "t2.nano"
+  ami           = data.aws_ami.amazon_linux2.id # var.EC2_instances_ami
+  instance_type = var.instance_type
+
+  key_name = aws_key_pair.this.key_name
+
+
+
 
   # Our Security group to allow HTTP and SSH access
   vpc_security_group_ids = [aws_security_group.default.id]
@@ -126,30 +147,13 @@ resource "aws_instance" "EC2_instance_1" {
   # environment it's more common to have a separate private subnet for
   # backend instances.
   subnet_id = aws_subnet.default.id
+
+  user_data = filebase64("${path.module}/templates/user_data.sh.tpl")
   tags = {
     Name = var.EC2_instance2_name
   }
 
-  # The connection block tells our provisioner how to communicate with the resource (instance)
-  connection {
-    # The default username for our AMI
-    #user = "ec2-user"
-    host = self.private_ip
-    # The connection will use the local SSH agent for authentication.
-  }
 
-  # user_data = data.template_file.user_data.rendered
-
-  # We run a remote provisioner on the instance after creating it.
-  # In this case, we just install nginx and start it. By default,
-  # this should be on port 80
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt-get -y update",
-      "sudo apt-get -y install nginx",
-      "sudo service nginx start",
-    ]
-  }
 }
 
 resource "aws_eip" "ip" {
