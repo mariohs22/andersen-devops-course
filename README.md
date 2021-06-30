@@ -24,6 +24,7 @@ Detailed information available in [Projects](https://github.com/mariohs22/anders
 - **2021-06-21**: IaC conception. Terraform, AWS CloudFormation, Azure resource manager, Google cloud deployment manager. Homework: [📁 task6_aws](./task6_aws).
 - **2021-06-23**: Terraform basics and Essentials.
 - **2021-06-28**: Network basics: OSI model; TCP/UDP; VLAN, VxLAN, VPN, etc.
+- **2021-06-30**: Basiс Cloud management tools (awscli, Azure PowerShell, Google console...). Terraform - Basics and essentials; Part 2. Homework: [📁 task7_aws_bash](./task7_aws_bash).
 
 ## Repository structure
 
