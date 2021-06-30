@@ -138,7 +138,7 @@ resource "aws_instance" "EC2_instance_1" {
   # We're going to launch into the same subnet as our ELB. In a production
   # environment it's more common to have a separate private subnet for
   # backend instances.
-  subnet_id = data.terraform_remote_state.vpc.outputs.vpc.private_subnets[0]
+  #subnet_id = data.terraform_remote_state.vpc.outputs.vpc.private_subnets[0]
 
   user_data = filebase64("${path.module}/templates/user_data.sh.tpl")
   tags = {
