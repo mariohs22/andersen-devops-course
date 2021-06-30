@@ -115,3 +115,7 @@ Learned nothing. Spend weekend with my family.
 ### 2021-06-28
 
 Understanding Terraform and AWS integration. Renew my network basics knowledge (OSI model, VxLAN, different VPN types).
+
+### 2021-06-29
+
+Terraform: understanding VPC in AWS.
