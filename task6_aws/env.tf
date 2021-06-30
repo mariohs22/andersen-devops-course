@@ -15,13 +15,13 @@ variable "region" {
 variable "terraform_state_bucket" {
   description = "bucket for remote states"
   type        = string
-  default     = "demo-non-prod-terraform-states"
+  default     = "mario-terraform-states"
 }
 
 variable "terraform_state_bucket_region" {
   description = "default aws region"
   type        = string
-  default     = "eu-central-1"
+  default     = "us-west-1"
 }
 
 variable "env" {
