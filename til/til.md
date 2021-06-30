@@ -119,3 +119,7 @@ Understanding Terraform and AWS integration. Renew my network basics knowledge (
 ### 2021-06-29
 
 Terraform: understanding VPC in AWS.
+
+### 2021-06-30
+
+Basiс Cloud management tools (awscli, Azure PowerShell, Google console...). Terraform - modules, IAM
