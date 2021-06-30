@@ -1,5 +1,5 @@
 ## Task description
 
-#### Will be awailable soon
+#### Will be available soon
 
-Description will be awailable soon
+Description will be available soon
