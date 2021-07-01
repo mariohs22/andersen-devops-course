@@ -25,7 +25,7 @@ resource "aws_lb" "myapp" {
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            = aws_subnet.public.*.id
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
   tags = {
     Environment = terraform.workspace
