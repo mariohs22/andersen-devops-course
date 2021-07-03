@@ -23,3 +23,26 @@
 - [https://www.terraform.io/docs/providers/index.html](https://www.terraform.io/docs/providers/index.html)
 - [https://www.terraform.io/docs/index.html](https://www.terraform.io/docs/index.html)
 - [https://registry.terraform.io/browse/providers](https://registry.terraform.io/browse/providers)
+
+### Prerequisites
+
+To follow this task you will need:
+
+- The [Terraform CLI](https://www.terraform.io/downloads.html) installed.
+- The [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) installed.
+- [An AWS account](https://aws.amazon.com/free/).
+- Your AWS credentials. You can [create a new Access Key on this page](https://console.aws.amazon.com/iam/home?#/security_credentials).
+
+Configure the AWS CLI and Terraform from your terminal.
+
+```
+aws configure
+terraform init
+```
+
+You can format and validate the configuration files by using these commands:
+
+```
+terraform fmt
+terraform validate
+```
