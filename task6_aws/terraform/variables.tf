@@ -1,41 +1,36 @@
-variable "profile" {
-  type    = string
-  default = "default"
-}
-
 variable "region" {
-  type    = string
-  default = "us-west-1"
+  type        = string
+  description = "AWS West Region"
+  default     = "us-west-1"
 }
 
 variable "vpc_cidr" {
-  description = "Please entere cidr block"
   type        = string
-  default     = "192.168.50.0/24"
+  description = "VPC CIDR"
+  default     = "10.0.0.0/16"
+}
+
+variable "azs" {
+  type        = list(any)
+  description = "Availability Zones"
+  default     = ["us-west-1b", "us-west-1c"]
+}
+
+variable "subnet_cidr" {
+  type        = list(any)
+  description = "VPC Subnet CIDR Ranges"
+  default     = ["10.0.101.0/24", "10.0.102.0/24"]
 }
 
 variable "instance_type" {
-  description = "Please chose instance type"
   type        = string
-  default     = "t2.nano"
+  description = "Instance type"
+  default     = "t2.micro"
 }
 
-variable "ec2_tags" {
-  type = map(any)
-  default = {
-    Name = "task6_server"
-  }
-}
 
-# variable "ec2_amis" {
-#   type = map
-#   default = {
-#     eu-west-1 = "ami-0fc970315c2d38f01"
-#     eu-west-2 = "ami-098828924dc89ea4a"
-#   }
-# }
-
-variable "task6_s3_bucket" {
-  type    = string
-  default = "task6-bucket-202107"
+variable "s3_bucket_http_name" {
+  type        = string
+  description = "S3 bucket name with http directory"
+  default     = "task6-http"
 }

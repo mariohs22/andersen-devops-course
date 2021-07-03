@@ -1,7 +1,7 @@
 data "template_file" "s3_ec2_policy" {
-  template = file("scripts/iam/ec2-policy.json")
+  template = file("scripts/ec2-policy.json")
   vars = {
-    s3_bucket_arn = "arn:aws:s3:::${var.task6_s3_bucket}/*"
+    s3_bucket_arn = "arn:aws:s3:::${var.s3_bucket_http_name}/*"
   }
 }
 
@@ -17,7 +17,7 @@ resource "aws_iam_role_policy" "ec2_policy" {
 resource "aws_iam_role" "ec2_role" {
   name = "ec2_role"
 
-  assume_role_policy = file("scripts/iam/ec2_assume_role.json")
+  assume_role_policy = file("scripts/ec2_assume_role.json")
 }
 
 # Attach role to EC2
