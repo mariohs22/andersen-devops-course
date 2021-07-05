@@ -34,7 +34,7 @@ resource "aws_instance" "compute_nodes" {
   subnet_id            = element(module.vpc.public_subnets, count.index)
   key_name             = aws_key_pair.main.key_name
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
-  user_data            = filebase64("${path.module}/install.sh")
+  user_data            = filebase64("${path.module}/scripts/install.sh")
   tags = {
     Name = "my-compute-node-${count.index}"
   }
