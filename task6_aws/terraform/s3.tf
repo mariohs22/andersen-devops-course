@@ -1,7 +1,6 @@
 resource "aws_s3_bucket" "task6_http" {
-  bucket = var.s3_bucket_http_name
-  acl    = "private"
-  #  policy        = file("${path.module}/scripts/s3_policy.json")
+  bucket        = var.s3_bucket_http_name
+  acl           = "private"
   force_destroy = true
   tags = {
     Name = "My task6 bucket web"
