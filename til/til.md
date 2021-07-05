@@ -123,3 +123,23 @@ Terraform: understanding VPC in AWS.
 ### 2021-06-30
 
 Basiс Cloud management tools (awscli, Azure PowerShell, Google console...). Terraform - modules, IAM
+
+### 2021-07-01
+
+Understanding AWS IAM roles for EC2 instances.
+
+### 2021-07-02
+
+Learned nothing. Working hard to prepare monthly reports.
+
+### 2021-07-03
+
+Learned nothing. Spend weekend with my family.
+
+### 2021-07-04
+
+Learned about connections between AWS EC2 and S3
+
+### 2021-07-05
+
+Learned about AWS Networking (VPC, subnets, gateways, etc.)
