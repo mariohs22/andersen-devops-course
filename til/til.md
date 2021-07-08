@@ -143,3 +143,15 @@ Learned about connections between AWS EC2 and S3
 ### 2021-07-05
 
 Learned about AWS Networking (VPC, subnets, gateways, etc.)
+
+### 2021-07-06
+
+Learned about AWS console commands, filtering results with jq.
+
+### 2021-07-07
+
+Learned about implementation of Redux in vanilla javascript projects.
+
+### 2021-07-08
+
+Prepared analytic data for first six month of 2021 (at my work).
