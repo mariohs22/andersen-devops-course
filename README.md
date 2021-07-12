@@ -26,6 +26,7 @@ Detailed information available in [Projects](https://github.com/mariohs22/anders
 - **2021-06-28**: Network basics: OSI model; TCP/UDP; VLAN, VxLAN, VPN, etc.
 - **2021-06-30**: Basiс Cloud management tools (awscli, Azure PowerShell, Google console...). Terraform - Basics and essentials; Part 2. Homework: [📁 task7_aws_bash](./task7_aws_bash).
 - **2021-07-05**: AWS Network: VPC, subnets, gateways, routing, etc.
+- **2021-07-12**: Working experience in Andersen (DevOps).
 
 ## Repository structure
 
