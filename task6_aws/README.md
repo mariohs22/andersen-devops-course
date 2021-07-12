@@ -47,6 +47,21 @@ terraform fmt
 terraform validate
 ```
 
+## Task explanation
+
+Terraform files of this task are based in `/terraform` subdir:
+
+- `provider.tf` - setting up Amazon AWS terraform provider.
+- `backend.tf` - setting up Amazon S3 bucket as backend.
+- `variables.tf` - setting up some variables: AWS region, EC2 instance type, S3 bucket name, CIDRs of VPC and subnets;
+- `vpc.tf` - create VPC (virtual private cloud) resource on AWS. This section uses [AWS VPC Terraform module](https://github.com/terraform-aws-modules/terraform-aws-vpc) to create VPC `10.0.0.0/16` and two subnets (`10.0.101.0/24` and `10.0.102.0/24`) in different zones (`us-west-1b` and `us-west-1c`), you can easily change it in `variables.tf`.
+- `sg.tf` - used to create security group (open ports for http, https, ssh incomming connections, allow any outgoing connections).
+- `s3.tf` - used to create new private S3 bucket and upload to it own _index.html_ file: `/scripts/index.html`.
+- `ec2.tf` - used to create EC2 instances in different zones (count of inctances depends on `variables.tf` settings) with Amazon linux2 installed, execute the script file `/scripts/install.sh` after creation instance to install nginx and replace default `index.html` from S3.
+- `aim.tf` -setting up IAM (Identity and Access Management) to access private S3 bucket.
+- `load_balancer.tf` - setting up application load balancer.
+- `output.tf` - outputs DNS name for access our load balancer (EC2 instances) from internet.
+
 <details>
     <summary>Terraform plan</summary>
     Note: Objects have changed outside of Terraform
