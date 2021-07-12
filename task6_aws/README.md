@@ -50,36 +50,7 @@ terraform validate
 <details>
     <summary>Terraform plan</summary>
     ```
-    terraform plan
-    ```
-    ```
-    tls_private_key.main: Refreshing state... [id=7e61767cca90d3c6b623fb28b3ffdea605887f7b]
-    local_file.ec2_private_key: Refreshing state... [id=ebd8f10825bc396947ba20af161a5daa062aeeb2]
-    aws_key_pair.main: Refreshing state... [id=main]
-    module.vpc.aws_vpc.this[0]: Refreshing state... [id=vpc-09bec9e44c7b99be9]
-    aws_s3_bucket.task6_http: Refreshing state... [id=task6-http]
-    aws_iam_role.ec2_role: Refreshing state... [id=ec2_role]
-    aws_iam_role_policy.ec2_policy: Refreshing state... [id=ec2_role:ec2_policy]
-    aws_iam_instance_profile.ec2_profile: Refreshing state... [id=ec2_profile]
-    aws_lb_target_group.alb_tg: Refreshing state... [id=arn:aws:elasticloadbalancing:us-west-1:398332759214:targetgroup/my-target-group/9e5c939358faeefb]
-    aws_security_group.alb_sg: Refreshing state... [id=sg-0b2246979a4c34ec0]
-    module.vpc.aws_internet_gateway.this[0]: Refreshing state... [id=igw-09c5768196ae1f342]
-    module.vpc.aws_subnet.public[1]: Refreshing state... [id=subnet-01aea12b4e7d29f59]
-    module.vpc.aws_subnet.public[0]: Refreshing state... [id=subnet-0fec902cb9a5ac24d]
-    module.vpc.aws_route_table.public[0]: Refreshing state... [id=rtb-050205836987ec3cb]
-    module.vpc.aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0bf382e46a38bf003]
-    module.vpc.aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-034edcac68f2173d7]
-    module.vpc.aws_route.public_internet_gateway[0]: Refreshing state... [id=r-rtb-050205836987ec3cb1080289494]
-    aws_lb.alb: Refreshing state... [id=arn:aws:elasticloadbalancing:us-west-1:398332759214:loadbalancer/app/my-alb/42f389f0ae52f278]
-    aws_lb_listener.alb_listener: Refreshing state... [id=arn:aws:elasticloadbalancing:us-west-1:398332759214:listener/app/my-alb/42f389f0ae52f278/d9c9300cb8a697b4]
-    aws_s3_bucket_object.file_upload: Refreshing state... [id=index.html]
-    aws_instance.compute_nodes[0]: Refreshing state... [id=i-070c5701f20a9f2bf]
-    aws_instance.compute_nodes[1]: Refreshing state... [id=i-0468099a6c1d58e9b]
-    aws_lb_target_group_attachment.target_registration[1]: Refreshing state... [id=arn:aws:elasticloadbalancing:us-west-1:398332759214:targetgroup/my-target-group/9e5c939358faeefb-20210705160850113100000001]
-    aws_lb_target_group_attachment.target_registration[0]: Refreshing state... [id=arn:aws:elasticloadbalancing:us-west-1:398332759214:targetgroup/my-target-group/9e5c939358faeefb-20210705160850200800000002]
-
     Note: Objects have changed outside of Terraform
-
     Terraform detected the following changes made outside of Terraform since the last "terraform apply":
 
     # aws_instance.compute_nodes[0] has been changed
