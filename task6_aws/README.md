@@ -49,7 +49,6 @@ terraform validate
 
 <details>
     <summary>Terraform plan</summary>
-    ~~~
     Note: Objects have changed outside of Terraform
     Terraform detected the following changes made outside of Terraform since the last "terraform apply":
 
@@ -342,7 +341,5 @@ terraform validate
         + filename             = "./ec2_private_key.pem"
         + id                   = (known after apply)
         }
-
-    ~~~
 
 </details>
