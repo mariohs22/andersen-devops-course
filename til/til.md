@@ -155,3 +155,7 @@ Learned about implementation of Redux in vanilla javascript projects.
 ### 2021-07-08
 
 Prepared analytic data for first six month of 2021 (at my work).
+
+### 2021-07-09
+
+Learned about github's markdown <detail>, <summary> tags.
