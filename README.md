@@ -27,6 +27,8 @@ Detailed information available in [Projects](https://github.com/mariohs22/anders
 - **2021-06-30**: Basiс Cloud management tools (awscli, Azure PowerShell, Google console...). Terraform - Basics and essentials; Part 2. Homework: [📁 task7_aws_bash](./task7_aws_bash).
 - **2021-07-05**: AWS Network: VPC, subnets, gateways, routing, etc.
 - **2021-07-12**: Working experience in Andersen (DevOps).
+- **2021-07-14**: Databases (part 1): theory, classification, replication types, performance, indexes, recovery.
+- **2021-07-21**: Databases (part 2): PostgreSQL settings and administartion.
 
 ## Repository structure
 
