@@ -29,9 +29,11 @@ Detailed information available in [Projects](https://github.com/mariohs22/anders
 - **2021-07-12**: Working experience in Andersen (DevOps).
 - **2021-07-14**: Databases (part 1): theory, classification, replication types, performance, indexes, recovery.
 - **2021-07-21**: Databases (part 2): PostgreSQL settings and administartion.
+- **2021-07-21**: DevOps Exam: [📁 exam](./exam).
 
 ## Repository structure
 
 - [**📁 about myself**](./about_myself): personal information about myself
+- [**📁 exam**](./exam): DevOps Exam directory
 - **📁 task\_\***: homeworks directories
 - [**📁 til**](./til): contains '_today I've learned_' information
