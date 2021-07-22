@@ -4,7 +4,7 @@ RUN apt-get update
 RUN apt-get -y install default-mysql-client
 RUN docker-php-ext-install pdo mysqli pdo_mysql
 
-COPY index.html /var/www/html/
+COPY index.html info.php /var/www/html/
 
 RUN chmod 755 /var/www/html/*
 WORKDIR /var/www/html
