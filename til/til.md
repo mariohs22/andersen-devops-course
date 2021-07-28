@@ -170,3 +170,19 @@ Watch lecture topic about working experience in Andersen. Learn about difference
 ### 2021-07-21
 
 Learn about different databases types, replication types, DB performance, PostgreSQL settings and administration.
+
+### 2021-07-22
+
+Learn about GitLab, GitLab CI/CD pipelines.
+
+### 2021-07-23
+
+Learn about Heroku. Start writing simple PHP application.
+
+### 2021-07-26
+
+Learn about GitHub actions.
+
+### 2021-07-27
+
+Learn about GitHub actions, notifications, deploy to Heroku.
