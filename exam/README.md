@@ -53,7 +53,7 @@ Build a working infrastructure with automatic building and deploying of a new ve
 
 ## My solution
 
-| Applicarion                                   | Language | Status                                                                                               |
+| Application                                   | Language | Status                                                                                               |
 | --------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------- |
 | [App1](https://github.com/mariohs22/app1_php) | PHP      | ![CI/CD](https://github.com/mariohs22/app1_php/actions/workflows/workflow.yml/badge.svg?branch=main) |
 | [App2](https://github.com/mariohs22/app2_go)  | GO       | -                                                                                                    |
