@@ -53,8 +53,7 @@ Build a working infrastructure with automatic building and deploying of a new ve
 
 ## My solution
 
-| Application                                   | Language | Status                                                                                               |
-| --------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------- |
-| [App1](https://github.com/mariohs22/app1_php) | PHP      | ![CI/CD](https://github.com/mariohs22/app1_php/actions/workflows/workflow.yml/badge.svg?branch=main) |
-| [App2](https://github.com/mariohs22/app2_go)  | GO       | ![CI/CD](https://github.com/mariohs22/app2_go/actions/workflows/workflow.yml/badge.svg?branch=main)  |
-|  |
+| Application                                   | Language | Provider | Status                                                                                               |
+| --------------------------------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------- |
+| [App1](https://github.com/mariohs22/app1_php) | PHP      | Heroku   | ![CI/CD](https://github.com/mariohs22/app1_php/actions/workflows/workflow.yml/badge.svg?branch=main) |
+| [App2](https://github.com/mariohs22/app2_go)  | GO       | Google   | ![CI/CD](https://github.com/mariohs22/app2_go/actions/workflows/workflow.yml/badge.svg?branch=main)  |
