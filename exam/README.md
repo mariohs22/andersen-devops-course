@@ -57,3 +57,5 @@ Build a working infrastructure with automatic building and deploying of a new ve
 | --------------------------------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------- |
 | [App1](https://github.com/mariohs22/app1_php) | PHP      | Heroku   | ![CI/CD](https://github.com/mariohs22/app1_php/actions/workflows/workflow.yml/badge.svg?branch=main) |
 | [App2](https://github.com/mariohs22/app2_go)  | GO       | Google   | ![CI/CD](https://github.com/mariohs22/app2_go/actions/workflows/workflow.yml/badge.svg?branch=main)  |
+
+See my [presentation (pdf)](https://github.com/mariohs22/andersen-devops-course/blob/main/exam/exam.pdf).
