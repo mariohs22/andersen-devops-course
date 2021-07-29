@@ -186,3 +186,11 @@ Learn about GitHub actions.
 ### 2021-07-27
 
 Learn about GitHub actions, notifications, deploy to Heroku.
+
+### 2021-07-28
+
+Learn about GitHub actions, GitHub makefile.
+
+### 2021-07-29
+
+Learn about Google Cloud Platform.
